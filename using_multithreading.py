@@ -6,17 +6,16 @@ counter = [0]
 
 
 def task_sleep(sleep_duration, task_number, lock, counter):
-    # ock.acquire()
-    with lock:
-        counter[0] += 1
-        # Perform operation that require a common data/resource
-        # lock.release()
-        print(counter[0])
-        time.sleep(sleep_duration)
-        print(f"Task {task_number} done (slept for {sleep_duration}s)! "
-              f"Main thread: {threading.main_thread().name}, "
-              f"Current thread: {threading.current_thread().name}, "
-              f"Process ID: {os.getpid()}")
+    lock.acquire()
+    counter[0] += 1
+    # Perform operation that require a common data/resource
+    lock.release()
+    print(counter[0])
+    time.sleep(sleep_duration)
+    print(f"Task {task_number} done (slept for {sleep_duration}s)! "
+          f"Main thread: {threading.main_thread().name}, "
+          f"Current thread: {threading.current_thread().name}, "
+          f"Process ID: {os.getpid()}")
 
 
 if __name__ == "__main__":
