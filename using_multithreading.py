@@ -14,6 +14,7 @@ def task_sleep(sleep_duration, task_number, lock, counter):
     time.sleep(sleep_duration)
     print(f"Task {task_number} done (slept for {sleep_duration}s)! "
           f"Main thread: {threading.main_thread().name}, "
+          f"Time the thread started: {time.time_ns()}, "
           f"Current thread: {threading.current_thread().name}, "
           f"Process ID: {os.getpid()}")
 
